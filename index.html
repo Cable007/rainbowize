@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Shift Overlay</title>
+    <title>Animated Rainbow Shift</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🌈 Rainbow Shift Overlay</h1>
+        <h1>🌈 Animated Rainbow Shift Overlay</h1>
 
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" id="imageFile" name="image" accept="image/*" required>
-            <button type="submit">Apply Rainbow Shift</button>
+            
+            <label for="frameCount">Animation Frames (Higher = Smoother/Slower):</label>
+            <input type="number" id="frameCount" name="frameCount" value="20" min="5" max="100" required>
+            
+            <button type="submit">Generate Animated GIF</button>
         </form>
 
         <div id="resultContainer">
             <h2>Result:</h2>
-            <p id="message">Upload an image (PNG/JPG) to get started.</p>
+            <p id="message">Upload an image to create an animated rainbow shift GIF.</p>
             <img id="outputImage" src="" alt="Processed Image" style="display:none;">
-            <a id="downloadLink" href="#" download="rainbow_shift.png" style="display:none;">Download Image</a>
+            <a id="downloadLink" href="#" download="rainbow_shift_animated.gif" style="display:none;">Download GIF</a>
         </div>
     </div>
 
