@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Shift Overlay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌈 Rainbow Shift Overlay</h1>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="imageFile" name="image" accept="image/*" required>
+            <button type="submit">Apply Rainbow Shift</button>
+        </form>
+
+        <div id="resultContainer">
+            <h2>Result:</h2>
+            <p id="message">Upload an image (PNG/JPG) to get started.</p>
+            <img id="outputImage" src="" alt="Processed Image" style="display:none;">
+            <a id="downloadLink" href="#" download="rainbow_shift.png" style="display:none;">Download Image</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
