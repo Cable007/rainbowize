@@ -3,17 +3,20 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     
     const form = event.target;
     const formData = new FormData(form);
+    
+    // Get the frame count and add it to the form data
+    const frameCount = document.getElementById('frameCount').value;
+    formData.append('frameCount', frameCount);
+
     const messageElement = document.getElementById('message');
     const outputImage = document.getElementById('outputImage');
     const downloadLink = document.getElementById('downloadLink');
 
-    // Reset and display loading message
-    messageElement.textContent = 'Processing... Applying rainbow shift.';
+    messageElement.textContent = `Processing... Generating ${frameCount} frames. This may take a moment.`;
     outputImage.style.display = 'none';
     downloadLink.style.display = 'none';
 
     try {
-        // Send the file to the server's /upload endpoint
         const response = await fetch('/upload', {
             method: 'POST',
             body: formData
@@ -23,21 +26,20 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
             throw new Error(`Server responded with status: ${response.status}`);
         }
 
-        // Get the processed image data as a Blob (binary data)
+        // Response is now a GIF, so we set the MIME type accordingly
         const imageBlob = await response.blob();
         
-        // Create a temporary local URL for the Blob
         const imageUrl = URL.createObjectURL(imageBlob);
 
-        // Display the image
+        // Update image source and download link for the GIF
         outputImage.src = imageUrl;
         outputImage.style.display = 'block';
         
-        // Set the download link
         downloadLink.href = imageUrl;
+        downloadLink.download = 'rainbow_shift_animated.gif'; // Ensure correct file name
         downloadLink.style.display = 'block';
 
-        messageElement.textContent = 'Rainbow Shift complete! See result below.';
+        messageElement.textContent = 'Animated Rainbow GIF complete!';
 
     } catch (error) {
         console.error('Upload failed:', error);
